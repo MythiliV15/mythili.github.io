@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certifications | Mythili V</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for certifications page */
+        .certifications-hero {
+            padding: 150px 0 80px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            text-align: center;
+        }
+        
+        .certifications-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .certifications-hero p {
+            font-size: 1.2rem;
+            color: var(--gray-color);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+        }
+        
+        .cert-icon {
+            font-size: 5rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+        
+        .certifications-section {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .cert-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            padding: 8px 20px;
+            background-color: white;
+            border: 2px solid var(--light-gray);
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .cert-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .cert-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .cert-image {
+            height: 200px;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .cert-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .cert-card:hover .cert-image img {
+            transform: scale(1.05);
+        }
+        
+        .cert-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            background-color: #e9f0f7;
+        }
+        
+        .cert-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+        
+        .cert-placeholder h3 {
+            font-size: 1.2rem;
+            color: var(--dark-color);
+        }
+        
+        .cert-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .cert-badge {
+            display: inline-block;
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            align-self: flex-start;
+        }
+        
+        .cert-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+            line-height: 1.4;
+        }
+        
+        .cert-org {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .cert-org i {
+            font-size: 0.9rem;
+        }
+        
+        .cert-date {
+            color: var(--gray-color);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .cert-date i {
+            font-size: 0.9rem;
+        }
+        
+        .cert-desc {
+            color: var(--gray-color);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+        
+        .cert-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+        
+        .cert-btn {
+            padding: 8px 16px;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex: 1;
+            justify-content: center;
+        }
+        
+        .cert-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .cert-btn.view {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .cert-btn.view:hover {
+            background-color: #3a5a8c;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            max-width: 900px;
+            width: 100%;
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            position: relative;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .modal-header {
+            padding: 20px 30px;
+            background-color: var(--dark-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h2 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .close-modal:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-body {
+            padding: 30px;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .modal-cert-image {
+            max-width: 100%;
+            max-height: 500px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .modal-cert-details {
+            width: 100%;
+            max-width: 700px;
+        }
+        
+        .modal-cert-details h3 {
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .modal-cert-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .modal-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray-color);
+        }
+        
+        .modal-meta-item i {
+            color: var(--primary-color);
+        }
+        
+        .modal-cert-desc {
+            color: var(--gray-color);
+            line-height: 1.7;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            justify-content: center;
+        }
+        
+        .stats-section {
+            padding: 80px 0;
+        }
+        
+        .cert-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .stat-box {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .stat-box h3 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+        
+        .stat-box p {
+            color: var(--gray-color);
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .certifications-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .certifications-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .cert-icon {
+                font-size: 4rem;
+            }
+            
+            .certifications-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                max-height: 80vh;
+            }
+            
+            .modal-header {
+                padding: 15px 20px;
+            }
+            
+            .modal-body {
+                padding: 20px;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+            
+            .modal-actions .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Mythili<span>V</span></a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="certifications.html" class="active">Certifications</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Certifications Hero Section -->
+    <section class="certifications-hero">
+        <div class="container">
+            <div class="cert-icon">
+                <i class="fas fa-certificate"></i>
+            </div>
+            <h1>Certifications & Achievements</h1>
+            <p>Professional certifications and courses completed to enhance technical skills and knowledge in various domains including programming, cloud computing, and Industry 4.0.</p>
+            <a href="#certifications" class="btn btn-primary">View Certificates</a>
+        </div>
+    </section>
+
+    <!-- Certifications Stats -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">Certifications Overview</h2>
+            
+            <div class="cert-stats">
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>7</h3>
+                    <p>Total Certifications</p>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>4</h3>
+                    <p>Elite Certifications</p>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>1</h3>
+                    <p>Issuing Organization</p>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>2023-2024</h3>
+                    <p>Completion Period</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Grid -->
+    <section class="certifications-section" id="certifications">
+        <div class="container">
+            <h2 class="section-title">My Certifications</h2>
+            
+            <div class="cert-filters">
+                <button class="filter-btn active" data-filter="all">All Certificates</button>
+                <button class="filter-btn" data-filter="elite">Elite</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+                <button class="filter-btn" data-filter="nptel">NPTEL</button>
+            </div>
+            
+            <div class="certifications-grid">
+                <!-- Certificate 1 -->
+                <div class="cert-card" data-category="elite nptel">
+                    <div class="cert-image">
+                        <div class="cert-placeholder">
+                            <i class="fas fa-certificate"></i>
+                            <h3>NPTEL Elite Certificate</h3>
+                        </div>
+                        <!-- Replace with actual image: <img src="images/certificates/python-cert.jpg" alt="Python Certificate"> -->
+                    </div>
+                    <div class="cert-content">
+                        <span class="cert-badge">Elite</span>
+                        <h3 class="cert-title">The Joy of Computing Using Python</h3>
+                        <div class="cert-org">
+                            <i class="fas fa-university"></i>
+                            <span>NPTEL (IIT Madras)</span>
+                        </div>
+                        <div class="cert-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>April 2023</span>
+                        </div>
+                        <p class="cert-desc">Completed an intensive course on Python programming covering fundamentals, data structures, and practical applications in computing.</p>
+                        <div class="cert-actions">
+                            <a href="#" class="cert-btn view" data-cert="python">
+                                <i class="far fa-eye"></i> View Certificate
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificate 2 -->
+                <div class="cert-card" data-category="completed nptel">
+                    <div class="cert-image">
+                        <div class="cert-placeholder">
+                            <i class="fas fa-certificate"></i>
+                            <h3>NPTEL Certificate</h3>
+                        </div>
+                    </div>
+                    <div class="cert-content">
+                        <span class="cert-badge">Completed</span>
+                        <h3 class="cert-title">Problem Solving through Programming in C</h3>
+                        <div class="cert-org">
+                            <i class="fas fa-university"></i>
+                            <span>NPTEL (IIT Kharagpur)</span>
+                        </div>
+                        <div class="cert-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>October 2023</span>
+                        </div>
+                        <p class="cert-desc">Mastered problem-solving techniques and C programming concepts including algorithms, data structures, and debugging methods.</p>
+                        <div class="cert-actions">
+                            <a href="#" class="cert-btn view" data-cert="c-programming">
+                                <i class="far fa-eye"></i> View Certificate
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificate 3 -->
+                <div class="cert-card" data-category="completed nptel">
+                    <div class="cert-image">
+                        <div class="cert-placeholder">
+                            <i class="fas fa-certificate"></i>
+                            <h3>NPTEL Certificate</h3>
+                        </div>
+                    </div>
+                    <div class="cert-content">
+                        <span class="cert-badge">Completed</span>
+                        <h3 class="cert-title">Cloud Computing</h3>
+                        <div class="cert-org">
+                            <i class="fas fa-university"></i>
+                            <span>NPTEL (IIT Madras)</span>
+                        </div>
+                        <div class="cert-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>April 2024</span>
+                        </div>
+                        <p class="cert-desc">Gained comprehensive knowledge of cloud computing concepts, architectures, deployment models, and cloud service providers.</p>
+                        <div class="cert-actions">
+                            <a href="#" class="cert-btn view" data-cert="cloud-computing">
+                                <i class="far fa-eye"></i> View Certificate
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificate 4 -->
+                <div class="cert-card" data-category="elite nptel">
+                    <div class="cert-image">
+                        <div class="cert-placeholder">
+                            <i class="fas fa-certificate"></i>
+                            <h3>NPTEL Elite Certificate</h3>
+                        </div>
+                    </div>
+                    <div class="cert-content">
+                        <span class="cert-badge">Elite</span>
+                        <h3 class="cert-title">Introduction to Industry 4.0 and Industrial Internet of Things</h3>
+                        <div class="cert-org">
+                            <i class="fas fa-university"></i>
+                            <span>NPTEL (IIT Kharagpur)</span>
+                        </div>
+                        <div class="cert-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>October 2024</span>
+                        </div>
+                        <p class="cert-desc">Explored Industry 4.0 concepts, IoT architectures, smart manufacturing, and digital transformation in industrial settings.</p>
+                        <div class="cert-actions">
+                            <a href="#" class="cert-btn view" data-cert="industry4">
+                                <i class="far fa-eye"></i> View Certificate
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificate 5 (Additional) -->
+                <div class="cert-card" data-category="completed">
+                    <div class="cert-image">
+                        <div class="cert-placeholder">
+                            <i class="fas fa-certificate"></i>
+                            <h3>Additional Certificate</h3>
+                        </div>
+                    </div>
+                    <div class="cert-content">
+                        <span class="cert-badge">Completed</span>
+                        <h3 class="cert-title">Python Zero to Hero</h3>
+                        <div class="cert-org">
+                            <i class="fas fa-university"></i>
+                            <span>Online Platform</span>
+                        </div>
+                        <div class="cert-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>March 2023</span>
+                        </div>
+                        <p class="cert-desc">Completed comprehensive training in HTML, CSS, JavaScript and responsive web design principles for modern web development.</p>
+                        <div class="cert-actions">
+                            <a href="#" class="cert-btn view" data-cert="web-dev">
+                                <i class="far fa-eye"></i> View Certificate
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificate 6 (Additional) -->
+                <div class="cert-card" data-category="completed">
+                    <div class="cert-image">
+                        <div class="cert-placeholder">
+                            <i class="fas fa-certificate"></i>
+                            <h3>Additional Certificate</h3>
+                        </div>
+                    </div>
+                    <div class="cert-content">
+                        <span class="cert-badge">Completed</span>
+                        <h3 class="cert-title">Data Visualization</h3>
+                        <div class="cert-org">
+                            <i class="fas fa-university"></i>
+                            <span>Online Platform</span>
+                        </div>
+                        <div class="cert-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>June 2023</span>
+                        </div>
+                        <p class="cert-desc">Mastered database design, SQL queries, normalization, and database administration using MySQL for web applications.</p>
+                        <div class="cert-actions">
+                            <a href="#" class="cert-btn view" data-cert="mysql">
+                                <i class="far fa-eye"></i> View Certificate
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certificate 7 (Additional) -->
+                <div class="cert-card" data-category="completed">
+                    <div class="cert-image">
+                        <div class="cert-placeholder">
+                            <i class="fas fa-certificate"></i>
+                            <h3>Additional Certificate</h3>
+                        </div>
+                    </div>
+                    <div class="cert-content">
+                        <span class="cert-badge">Completed</span>
+                        <h3 class="cert-title">Deep Learning</h3>
+                        <div class="cert-org">
+                            <i class="fas fa-university"></i>
+                            <span>Professional Development</span>
+                        </div>
+                        <div class="cert-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>December 2023</span>
+                        </div>
+                        <p class="cert-desc">Developed leadership skills including team management, communication strategies, project coordination, and conflict resolution.</p>
+                        <div class="cert-actions">
+                            <a href="#" class="cert-btn view" data-cert="leadership">
+                                <i class="far fa-eye"></i> View Certificate
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificate Modal -->
+    <div id="cert-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Certificate Details</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img id="modal-img" src="images\Joy of computing.jpeg" alt="Certificate" class="modal-cert-image">
+                <div class="modal-cert-details">
+                    <h3 id="modal-cert-title">The Joy of Computing Using Python</h3>
+                    <div class="modal-cert-meta">
+                        <div class="modal-meta-item">
+                            <i class="fas fa-university"></i>
+                            <span id="modal-org">NPTEL (IIT Madras)</span>
+                        </div>
+                        <div class="modal-meta-item">
+                            <i class="far fa-calendar-alt"></i>
+                            <span id="modal-date">April 2023</span>
+                        </div>
+                        <div class="modal-meta-item">
+                            <i class="fas fa-award"></i>
+                            <span id="modal-type">Elite Certificate</span>
+                        </div>
+                    </div>
+                    <p id="modal-desc" class="modal-cert-desc">
+                        Completed an intensive course on Python programming covering fundamentals, data structures, and practical applications in computing.
+                    </p>
+                    <div class="modal-actions">
+                        <a href="#" id="modal-download" class="btn btn-primary" download>
+                            <i class="fas fa-download"></i> Download PDF
+                        </a>
+                        <a href="#" id="modal-verify" class="btn btn-outline" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Verify Online
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>Mythili V</h3>
+                    <p>Web Developer Intern & B.Tech IT Student passionate about creating meaningful web experiences.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="certifications.html">Certifications</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> 2k22it30@kiot.ac.in</p>
+                    <p><i class="fas fa-phone"></i> 9025464026</p>
+                    <p><i class="fab fa-linkedin"></i> LinkedIn.com/Mythili</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Mythili V. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+    // Certifications page specific JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const certCards = document.querySelectorAll('.cert-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                
+                // Show/hide cards based on filter
+                certCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'flex';
+                    } else {
+                        const categories = card.getAttribute('data-category');
+                        if (categories.includes(filter)) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+        
+        // Certificate data for modal
+        const certificateData = {
+            'python': {
+                title: 'The Joy of Computing Using Python',
+                org: 'NPTEL (IIT Madras)',
+                date: 'April 2023',
+                type: 'Elite Certificate',
+                desc: 'Completed an intensive course on Python programming covering fundamentals, data structures, and practical applications in computing. This certification demonstrates proficiency in Python programming for problem-solving and algorithmic thinking.',
+                img: 'images/Joy of computing.jpeg', // Your actual image path
+                download: 'images/Joy of computing.jpeg', // Same as image for download
+                verify: 'https://nptel.ac.in/noc/verify_certificate'
+            },
+            'c-programming': {
+                title: 'Problem Solving through Programming in C',
+                org: 'NPTEL (IIT Kharagpur)',
+                date: 'October 2023',
+                type: 'Completed',
+                desc: 'Mastered problem-solving techniques and C programming concepts including algorithms, data structures, and debugging methods. This course enhanced logical thinking and programming skills essential for software development.',
+                img: 'images/program in c.jpeg', // Your actual image path
+                download: 'images/program in c.jpeg',
+                verify: 'https://nptel.ac.in/noc/verify_certificate'
+            },
+            'cloud-computing': {
+                title: 'Cloud Computing',
+                org: 'NPTEL (IIT Madras)',
+                date: 'April 2024',
+                type: 'Completed',
+                desc: 'Gained comprehensive knowledge of cloud computing concepts, architectures, deployment models, and cloud service providers. Covered topics include virtualization, cloud storage, security, and emerging trends in cloud technology.',
+                img: 'images/WhatsApp Image 2026-02-02 at 9.12.24 PM.jpeg', // Your actual image path
+                download: 'images/WhatsApp Image 2026-02-02 at 9.12.24 PM.jpeg',
+                verify: 'https://nptel.ac.in/noc/verify_certificate'
+            },
+            'industry4': {
+                title: 'Introduction to Industry 4.0 and Industrial Internet of Things',
+                org: 'NPTEL (IIT Kharagpur)',
+                date: 'October 2024',
+                type: 'Elite Certificate',
+                desc: 'Explored Industry 4.0 concepts, IoT architectures, smart manufacturing, and digital transformation in industrial settings. This course provided insights into the fourth industrial revolution and its impact on modern industries.',
+                img: 'images/Introduction to Industry 4.0 and Industrial Internet of Things.jpg', // Update this with your actual image
+                download: 'images/Introduction to Industry 4.0 and Industrial Internet of Things.jpg',
+                verify: 'https://nptel.ac.in/noc/verify_certificate'
+            },
+            'web-dev': {
+                title: 'Python Zero to Hero',
+                org: 'Online Platform',
+                date: 'March 2023',
+                type: 'Completed',
+                desc: 'Completed comprehensive training in Python programming from basics to advanced concepts. This certification validates skills in Python programming for various applications.',
+                img: 'images/Python zero to hero.jpeg', // Your actual image path
+                download: 'images/Python zero to hero.jpeg',
+                verify: '#'
+            },
+            'mysql': {
+                title: 'Data Visualization',
+                org: 'Online Platform',
+                date: 'June 2023',
+                type: 'Completed',
+                desc: 'Mastered data visualization techniques and tools for creating insightful charts and graphs from data. This certification demonstrates proficiency in data representation and analysis.',
+                img: 'images/Data visualization.jpeg', // Your actual image path
+                download: 'images/Data visualization.jpeg',
+                verify: '#'
+            },
+            'leadership': {
+                title: 'Deep Learning',
+                org: 'Professional Development',
+                date: 'December 2023',
+                type: 'Completed',
+                desc: 'Developed skills in deep learning concepts including neural networks, convolutional networks, and natural language processing. This certification highlights abilities in AI and machine learning.',
+                img: 'images/Deep learning.jpeg', // Your actual image path
+                download: 'images/Deep learning.jpeg',
+                verify: '#'
+            }
+        };
+        
+        // Modal functionality
+        const modal = document.getElementById('cert-modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-cert-title');
+        const modalOrg = document.getElementById('modal-org');
+        const modalDate = document.getElementById('modal-date');
+        const modalType = document.getElementById('modal-type');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalDownload = document.getElementById('modal-download');
+        const modalVerify = document.getElementById('modal-verify');
+        const closeModal = document.querySelector('.close-modal');
+        
+        // Add click event to all "View Certificate" buttons
+        document.querySelectorAll('.cert-btn.view').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const certId = this.getAttribute('data-cert');
+                const certData = certificateData[certId];
+                
+                if (certData) {
+                    // Set modal content
+                    modalTitle.textContent = certData.title;
+                    modalOrg.textContent = certData.org;
+                    modalDate.textContent = certData.date;
+                    modalType.textContent = certData.type;
+                    modalDesc.textContent = certData.desc;
+                    
+                    // Use your actual image path instead of placeholder
+                    modalImg.src = certData.img; // This is the key change
+                    modalImg.alt = certData.title;
+                    
+                    // Set download and verify links
+                    modalDownload.href = certData.download;
+                    modalDownload.download = certData.title.replace(/\s+/g, '-').toLowerCase() + '.jpg';
+                    modalVerify.href = certData.verify;
+                    
+                    // Show modal
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+        
+        // Close modal
+        if (closeModal) {
+            closeModal.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        }
+        
+        // Close modal when clicking outside
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'flex') {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Also update the certificate cards to show actual images instead of placeholders
+        // You can add this to show images directly in the cards too
+        function updateCertificateImages() {
+            const certImages = {
+                'python': 'images/Joy of computing.jpeg',
+                'c-programming': 'images/program in c.jpeg',
+                'cloud-computing': 'images/WhatsApp Image 2026-02-02 at 9.12.24 PM.jpeg',
+                'industry4': 'images/Introduction to Industry 4.0 and Industrial Internet of Things.jpg',
+                'web-dev': 'images/Python zero to hero.jpeg',
+                'mysql': 'images/Data visualization.jpeg',
+                'leadership': 'images/Deep learning.jpeg'
+            };
+            
+            // Update each certificate card image
+            document.querySelectorAll('.cert-card').forEach(card => {
+                const viewBtn = card.querySelector('.cert-btn.view');
+                if (viewBtn) {
+                    const certId = viewBtn.getAttribute('data-cert');
+                    const imagePath = certImages[certId];
+                    if (imagePath) {
+                        const imageDiv = card.querySelector('.cert-image');
+                        // Replace placeholder with actual image
+                        imageDiv.innerHTML = `<img src="${imagePath}" alt="${certId} Certificate" class="cert-image">`;
+                    }
+                }
+            });
+        }
+        
+        // Call this function to update images
+        updateCertificateImages();
+    });
+</script>
+</body>
+</html>

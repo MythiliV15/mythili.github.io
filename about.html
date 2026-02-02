@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | Mythili V</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for about page */
+        .about-hero {
+            padding: 150px 0 80px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+        }
+        
+        .about-hero .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+        
+        .about-profile {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .profile-image-large {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 8px solid white;
+        }
+        
+        .profile-image-large::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .about-intro {
+            flex: 1;
+        }
+        
+        .about-intro h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .about-intro h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .about-intro p {
+            font-size: 1.1rem;
+            color: var(--gray-color);
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+        
+        .highlight-box {
+            background-color: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin: 20px 0;
+            border-left: 5px solid var(--primary-color);
+        }
+        
+        .highlight-box h3 {
+            color: var(--dark-color);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .timeline-section {
+            background-color: var(--light-color);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto 0;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: white;
+            top: 22px;
+            transform: rotate(45deg);
+            box-shadow: 2px -2px 2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: -10px;
+            background-color: white;
+            top: 22px;
+            transform: rotate(45deg);
+            box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .timeline-date {
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .timeline-date i {
+            font-size: 0.9rem;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border: 4px solid white;
+            border-radius: 50%;
+            top: 20px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+        
+        .experience-section {
+            padding: 80px 0;
+        }
+        
+        .experience-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .experience-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color);
+        }
+        
+        .experience-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .experience-header h3 {
+            font-size: 1.4rem;
+            color: var(--dark-color);
+        }
+        
+        .experience-date {
+            background-color: var(--light-gray);
+            color: var(--dark-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .experience-role {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .experience-role i {
+            font-size: 0.9rem;
+        }
+        
+        .experience-details {
+            color: var(--gray-color);
+            margin-bottom: 20px;
+        }
+        
+        .experience-details ul {
+            padding-left: 20px;
+        }
+        
+        .experience-details li {
+            margin-bottom: 8px;
+        }
+        
+        .leadership-section {
+            background-color: var(--light-color);
+            padding: 80px 0;
+        }
+        
+        .leadership-card {
+            max-width: 800px;
+            margin: 40px auto 0;
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            display: flex;
+        }
+        
+        .leadership-icon {
+            width: 150px;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+        
+        .leadership-content {
+            flex: 1;
+            padding: 30px;
+        }
+        
+        .leadership-content h3 {
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .leadership-content p {
+            color: var(--gray-color);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        @media (max-width: 768px) {
+            .about-hero .container {
+                flex-direction: column;
+            }
+            
+            .profile-image-large {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .about-intro h1 {
+                font-size: 2.3rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 21px !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after {
+                left: -10px;
+                right: auto;
+                box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.05);
+            }
+            
+            .leadership-card {
+                flex-direction: column;
+            }
+            
+            .leadership-icon {
+                width: 100%;
+                height: 120px;
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Mythili<span>V</span></a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="certifications.html">Certifications</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="about-intro">
+                <h1>Mythili V</h1>
+                <h2>Web Developer Intern | B.Tech IT Student</h2>
+                <p>A proactive and enthusiastic person with a clear mindset of goals, highly motivated and capable of working on own initiative or as part of a team with excellent problem-solving skills.</p>
+                
+                <div class="highlight-box">
+                    <h3>Currently Pursuing</h3>
+                    <p>7th semester of B.Tech in Information Technology at Knowledge Institute of Technology with a CGPA of 8.39 (till 6th semester).</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3>Current Role</h3>
+                    <p>Web Developer Intern at WSPL Hosting Solutions (November 2023 - Present) serving as Team Lead managing junior interns.</p>
+                </div>
+            </div>
+            
+            <div class="about-profile">
+                <div class="profile-image-large"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Timeline -->
+    <section class="timeline-section">
+        <div class="container">
+            <h2 class="section-title">Education Timeline</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">
+                            <i class="far fa-calendar-alt"></i> 2022 - Present
+                        </div>
+                        <h3>Bachelor of Information Technology</h3>
+                        <p>Knowledge Institute of Technology</p>
+                        <p>Pursuing 7th semester with 8.39 CGPA till 6th semester</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">
+                            <i class="far fa-calendar-alt"></i> 2021 - 2022
+                        </div>
+                        <h3>12th Grade</h3>
+                        <p>Sri Vidya Mandir Senior Secondary School</p>
+                        <p>Completed with 88%</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">
+                            <i class="far fa-calendar-alt"></i> 2019 - 2020
+                        </div>
+                        <h3>10th Grade</h3>
+                        <p>Sri Vidya Mandir Senior Secondary School</p>
+                        <p>Completed with 89%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience-section">
+        <div class="container">
+            <h2 class="section-title">Internship Experience</h2>
+            
+            <div class="experience-cards">
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <h3>WSPL Hosting Solutions</h3>
+                        <span class="experience-date">Nov 2023 - Present</span>
+                    </div>
+                    <div class="experience-role">
+                        <i class="fas fa-user-tie"></i> Web Developer Intern & Team Lead
+                    </div>
+                    <div class="experience-details">
+                        <p>Currently interning as a Web Developer with additional responsibilities as Team Lead:</p>
+                        <ul>
+                            <li>Managing and mentoring junior interns</li>
+                            <li>Developing responsive websites for various clients</li>
+                            <li>Collaborating with team members on project planning</li>
+                            <li>Ensuring timely delivery of projects</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <h3>Key Projects During Internship</h3>
+                        <span class="experience-date">Ongoing</span>
+                    </div>
+                    <div class="experience-role">
+                        <i class="fas fa-laptop-code"></i> Web Development Projects
+                    </div>
+                    <div class="experience-details">
+                        <p>Developed and currently developing websites for multiple clients:</p>
+                        <ul>
+                            <li><strong>Frontier:</strong> Online education platform</li>
+                            <li><strong>Warah:</strong> Comprehensive services platform</li>
+                            <li><strong>MD Events:</strong> Event management services (ongoing)</li>
+                        </ul>
+                        <p>Technologies used: HTML, CSS, JavaScript, ReactJS (beginner), MySQL</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="leadership-section">
+        <div class="container">
+            <h2 class="section-title">Leadership Experience</h2>
+            
+            <div class="leadership-card">
+                <div class="leadership-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="leadership-content">
+                    <h3>Team Lead - WSPL Hosting Solutions</h3>
+                    <p>During my internship at WSPL, I was entrusted with the responsibility of Team Lead, where I managed and guided junior interns through their projects and tasks.</p>
+                    <p>My responsibilities included:</p>
+                    <ul>
+                        <li>Assigning tasks and monitoring progress of junior interns</li>
+                        <li>Conducting code reviews and providing feedback</li>
+                        <li>Facilitating team meetings and stand-ups</li>
+                        <li>Acting as a bridge between interns and senior developers</li>
+                        <li>Ensuring project deadlines were met with quality deliverables</li>
+                    </ul>
+                    <p>This experience helped me develop strong leadership, communication, and project management skills.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>Mythili V</h3>
+                    <p>Web Developer Intern & B.Tech IT Student passionate about creating meaningful web experiences.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="certifications.html">Certifications</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> 2k22it30@kiot.ac.in</p>
+                    <p><i class="fas fa-phone"></i> 9025464026</p>
+                    <p><i class="fab fa-linkedin"></i> LinkedIn.com/Mythili</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Mythili V. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
