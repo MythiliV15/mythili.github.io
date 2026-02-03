@@ -200,8 +200,13 @@ function initGalleryPage() {
     }
 }
 
-// Contact Page Form Validation
+// Contact Page Form Validation (fallback when EmailJS is not used)
 function initContactPage() {
+    // If EmailJS is loaded, the contact page inline script handles the form - don't attach duplicate handler
+    if (typeof emailjs !== 'undefined') {
+        return;
+    }
+    
     const contactForm = document.getElementById('contact-form');
     
     if (contactForm) {
@@ -243,7 +248,7 @@ function initContactPage() {
                 isValid = false;
             }
             
-            // If valid, show success message (in a real app, you would submit to a server)
+            // If valid, show success message (fallback when EmailJS not available)
             if (isValid) {
                 alert('Thank you for your message! I will get back to you soon.');
                 contactForm.reset();
