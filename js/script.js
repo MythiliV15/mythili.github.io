@@ -201,57 +201,57 @@ function initGalleryPage() {
 }
 
 // Contact Page Form Validation (fallback when EmailJS is not used)
+// Contact Page Form Validation (fallback + Google Sheets)
 function initContactPage() {
-    // If EmailJS is loaded, the contact page inline script handles the form - don't attach duplicate handler
+    // If EmailJS is loaded, the contact page inline script handles it
     if (typeof emailjs !== 'undefined') {
         return;
     }
     
     const contactForm = document.getElementById('contact-form');
+    // YOUR GOOGLE SCRIPT URL
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzC1HcT9wki8p1JcLUs57zwnLhOAGyYgp-l_UhSHqV7PIRUsv7cC2dvI-aC2Gh0lsnCzQ/exec';
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Basic validation
             const name = document.getElementById('name');
             const email = document.getElementById('email');
             const message = document.getElementById('message');
+            const submitBtn = contactForm.querySelector('.submit-btn');
             let isValid = true;
             
             // Reset error states
             document.querySelectorAll('.error-message').forEach(el => el.remove());
             document.querySelectorAll('.form-group').forEach(el => el.classList.remove('error'));
             
-            // Name validation
-            if (!name.value.trim()) {
-                showError(name, 'Name is required');
-                isValid = false;
-            }
-            
-            // Email validation
+            // Validation Logic
+            if (!name.value.trim()) { showError(name, 'Name is required'); isValid = false; }
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!email.value.trim()) {
-                showError(email, 'Email is required');
-                isValid = false;
-            } else if (!emailRegex.test(email.value)) {
-                showError(email, 'Please enter a valid email address');
-                isValid = false;
-            }
+            if (!email.value.trim() || !emailRegex.test(email.value)) { showError(email, 'Valid email required'); isValid = false; }
+            if (!message.value.trim() || message.value.trim().length < 10) { showError(message, 'Message too short'); isValid = false; }
             
-            // Message validation
-            if (!message.value.trim()) {
-                showError(message, 'Message is required');
-                isValid = false;
-            } else if (message.value.trim().length < 10) {
-                showError(message, 'Message must be at least 10 characters long');
-                isValid = false;
-            }
-            
-            // If valid, show success message (fallback when EmailJS not available)
             if (isValid) {
-                alert('Thank you for your message! I will get back to you soon.');
-                contactForm.reset();
+                // Change button state
+                const originalBtnText = submitBtn.textContent;
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+
+                // Send to Google Sheets only (as EmailJS failed/is missing)
+                fetch(scriptURL, { method: 'POST', body: new FormData(contactForm)})
+                    .then(response => {
+                        alert('Thank you! Your message was saved to my records.');
+                        contactForm.reset();
+                        submitBtn.textContent = originalBtnText;
+                        submitBtn.disabled = false;
+                    })
+                    .catch(error => {
+                        console.error('Error!', error.message);
+                        alert('Message could not be sent. Please try again later.');
+                        submitBtn.textContent = originalBtnText;
+                        submitBtn.disabled = false;
+                    });
             }
         });
     }
