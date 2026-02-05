@@ -271,3 +271,79 @@ function showError(input, message) {
     
     formGroup.appendChild(errorElement);
 }
+
+// Theme Toggle Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Theme toggle button
+    const themeToggle = document.createElement('button');
+    themeToggle.className = 'theme-toggle';
+    themeToggle.setAttribute('aria-label', 'Toggle dark/light mode');
+    themeToggle.innerHTML = `
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
+    `;
+    
+    // Add toggle button to navbar
+    const navbarContainer = document.querySelector('.navbar .container');
+    if (navbarContainer) {
+        navbarContainer.appendChild(themeToggle);
+    }
+    
+    // Check for saved theme preference or respect OS preference
+    const savedTheme = localStorage.getItem('theme') || 
+                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    
+    // Set initial theme
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    // Update toggle position based on theme
+    updateTogglePosition(savedTheme);
+    
+    // Theme toggle click event
+    themeToggle.addEventListener('click', function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        // Set new theme
+        document.documentElement.setAttribute('data-theme', newTheme);
+        
+        // Save preference to localStorage
+        localStorage.setItem('theme', newTheme);
+        
+        // Update toggle position
+        updateTogglePosition(newTheme);
+        
+        // Add animation effect
+        this.classList.add('clicked');
+        setTimeout(() => {
+            this.classList.remove('clicked');
+        }, 300);
+    });
+    
+    function updateTogglePosition(theme) {
+        // This function ensures the toggle button shows correctly for the current theme
+        // No additional logic needed as CSS handles the visual state
+    }
+    
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme')) {
+            const newTheme = e.matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+        }
+    });
+    
+    // Add CSS for toggle animation
+    const style = document.createElement('style');
+    style.textContent = `
+        .theme-toggle.clicked {
+            transform: scale(0.95);
+        }
+        
+        .theme-toggle:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+    `;
+    document.head.appendChild(style);
+});

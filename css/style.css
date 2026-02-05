@@ -130,6 +130,7 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .logo {
@@ -147,6 +148,7 @@ section {
 .nav-menu {
     display: flex;
     list-style: none;
+    align-items: center;
 }
 
 .nav-menu li {
@@ -621,4 +623,248 @@ section {
     }
 }
 
- 
+ /* ============================================
+   DARK THEME STYLES
+   ============================================ */
+
+/* Dark theme variables */
+[data-theme="dark"] {
+    --primary-color: #5a8cdf;
+    --secondary-color: #7ac7b7;
+    --accent-color: #e68c5c;
+    --dark-color: #f8f9fa;
+    --light-color: #1a1a2e;
+    --gray-color: #b0b7c3;
+    --light-gray: #2c2c54;
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark theme specific styles */
+[data-theme="dark"] body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .navbar {
+    background-color: rgba(26, 26, 46, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .logo {
+    color: #f8f9fa;
+}
+
+[data-theme="dark"] .nav-menu a {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .nav-menu a:hover {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+[data-theme="dark"] .about-preview,
+[data-theme="dark"] .skills,
+[data-theme="dark"] .featured-projects,
+[data-theme="dark"] .timeline-section,
+[data-theme="dark"] .leadership-section,
+[data-theme="dark"] .certifications-section,
+[data-theme="dark"] .gallery-section,
+[data-theme="dark"] .internship-highlights {
+    background-color: #1a1a2e;
+}
+
+[data-theme="dark"] .section-title {
+    color: var(--dark-color);
+}
+
+[data-theme="dark"] .skill-category,
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .experience-card,
+[data-theme="dark"] .leadership-card,
+[data-theme="dark"] .cert-card,
+[data-theme="dark"] .gallery-item,
+[data-theme="dark"] .internship-card,
+[data-theme="dark"] .stat-box,
+[data-theme="dark"] .highlight-box,
+[data-theme="dark"] .timeline-content,
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] .gallery-modal-content,
+[data-theme="dark"] .project-modal-content,
+[data-theme="dark"] .contact-info,
+[data-theme="dark"] .contact-form-container {
+    background-color: #16213e;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .project-content h3,
+[data-theme="dark"] .project-title-detailed,
+[data-theme="dark"] .experience-card h3,
+[data-theme="dark"] .leadership-content h3,
+[data-theme="dark"] .cert-title,
+[data-theme="dark"] .gallery-title,
+[data-theme="dark"] .sidebar-info-label,
+[data-theme="dark"] .modal-cert-details h3,
+[data-theme="dark"] .gallery-modal-details h3,
+[data-theme="dark"] .project-modal-description h3 {
+    color: var(--dark-color);
+}
+
+[data-theme="dark"] .project-content p,
+[data-theme="dark"] .project-desc-detailed,
+[data-theme="dark"] .experience-details,
+[data-theme="dark"] .leadership-content p,
+[data-theme="dark"] .cert-desc,
+[data-theme="dark"] .gallery-desc,
+[data-theme="dark"] .modal-cert-desc,
+[data-theme="dark"] .gallery-modal-desc,
+[data-theme="dark"] .project-modal-description p,
+[data-theme="dark"] .sidebar-info-value,
+[data-theme="dark"] .modal-meta-item,
+[data-theme="dark"] .gallery-modal-meta-item {
+    color: var(--gray-color);
+}
+
+[data-theme="dark"] .skill-tag,
+[data-theme="dark"] .tech-tag,
+[data-theme="dark"] .sidebar-tech-tag,
+[data-theme="dark"] .internship-skill {
+    background-color: #2c2c54;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .skill-tag:hover,
+[data-theme="dark"] .tech-tag:hover,
+[data-theme="dark"] .sidebar-tech-tag:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+[data-theme="dark"] .footer {
+    background-color: #0f0f1a;
+}
+
+[data-theme="dark"] .footer-about p,
+[data-theme="dark"] .footer-links a,
+[data-theme="dark"] .footer-contact p,
+[data-theme="dark"] .footer-bottom {
+    color: #b0b7c3;
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group textarea {
+    background-color: #2c2c54;
+    border-color: #3a4556;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .form-group input:focus,
+[data-theme="dark"] .form-group textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(90, 140, 223, 0.2);
+}
+
+[data-theme="dark"] .form-group label {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .btn-outline {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+[data-theme="dark"] .btn-outline:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+[data-theme="dark"] .project-overlay {
+    background-color: rgba(90, 140, 223, 0.9);
+}
+
+[data-theme="dark"] .gallery-overlay {
+    background-color: rgba(90, 140, 223, 0.9);
+}
+
+[data-theme="dark"] .modal-header,
+[data-theme="dark"] .gallery-modal-header,
+[data-theme="dark"] .project-modal-header {
+    background-color: #0f0f1a;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: var(--light-gray);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-left: 20px;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+}
+
+.theme-toggle::before {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-radius: 50%;
+    left: 3px;
+    transition: var(--transition);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .theme-toggle {
+    background-color: var(--primary-color);
+}
+
+[data-theme="dark"] .theme-toggle::before {
+    transform: translateX(30px);
+    background-color: var(--dark-color);
+}
+
+.theme-toggle i {
+    font-size: 0.8rem;
+    color: white;
+    z-index: 1;
+}
+
+.theme-toggle .fa-sun {
+    margin-right: auto;
+}
+
+.theme-toggle .fa-moon {
+    margin-left: auto;
+}
+
+/* Mobile theme toggle */
+@media (max-width: 768px) {
+    .theme-toggle {
+        position: absolute;
+        top: 20px;
+        right: 60px;
+        margin-left: 0;
+    }
+    
+    .nav-menu.active .theme-toggle {
+        position: static;
+        margin: 15px auto;
+        display: block;
+    }
+}
+
+/* Smooth theme transition */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
